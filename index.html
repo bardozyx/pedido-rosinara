@@ -1,96 +1,113 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Surpresa!</title>
-<style>
-  body {
-    background-color: #fff4e6; /* fundo laranja claro */
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 30px;
-    user-select: none;
-    color: #a64d00; /* texto marrom alaranjado escuro */
-  }
-  h1 {
-    color: #ff6600; /* laranja vibrante */
-    margin-bottom: 0;
-  }
-  p {
-    font-size: 1.3em;
-    color: #7a3e00; /* marrom escuro laranja */
-    margin-top: 5px;
-  }
-  .buttons {
-    margin-top: 30px;
-  }
-  button {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 15px;
-    padding: 15px 40px;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(255, 102, 0, 0.4);
-    transition: background-color 0.3s ease;
-  }
-  #yesBtn {
-    background-color: #ff6600;
-    color: #fff8e1;
-  }
-  #yesBtn:hover {
-    background-color: #cc5200;
-  }
-  #noBtn {
-    background-color: #ffd6a5;
-    color: #994d00;
-    position: relative;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Surpresa!</title>
+  <style>
+    body {
+      background-color: #fff4e6;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+      user-select: none;
+      color: #a64d00;
+      position: relative; /* para o botão "não" se mover corretamente */
+      overflow: hidden;
+      height: 100vh;
+    }
+    h1 {
+      color: #ff6600;
+      margin-bottom: 0;
+    }
+    p {
+      font-size: 1.3em;
+      color: #7a3e00;
+      margin-top: 5px;
+    }
+    .buttons {
+      margin-top: 30px;
+    }
+    button {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 15px;
+      padding: 15px 40px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(255, 102, 0, 0.4);
+      transition: background-color 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+    #yesBtn {
+      background-color: #ff6600;
+      color: #fff8e1;
+    }
+    #yesBtn:hover {
+      background-color: #cc5200;
+    }
+    #noBtn {
+      background-color: #ffd6a5;
+      color: #994d00;
+    }
+  </style>
 </head>
 <body>
 
-<h1>E aí, meu amor 😸</h1>
-<p>Se você chegou até aqui, significa que deu tudo certo e eu consegui te entregar isso kakaka.</p>
-<p>Estou apenas tentanto fazer algo que possa representar um pedido decente.</p>
-<p>Eu sei que já falei muito sobre o quanto eu tô apaixonado por você e o quanto esses dias estão sendo maravilhosos com você nele.</p>
-<p>Mas o que eu mais quero é que você nunca se esqueça do quanto é especial pra mim… e que continue sendo a pessoa por quem eu sou completamente apaixonado, a pessoa que faz meus dias mais felizes, hoje, e se você quiser, por muito tempo ainda...</p>
+  <h1>E aí, meu amor 😸</h1>
+  <p>Se você chegou até aqui, significa que deu tudo certo e eu consegui te entregar isso kakaka.</p>
+  <p>Estou apenas tentanto fazer algo que possa representar um pedido decente.</p>
+  <p>Eu sei que já falei muito sobre o quanto eu tô apaixonado por você e o quanto esses dias estão sendo maravilhosos com você nele.</p>
+  <p>Mas o que eu mais quero é que você nunca se esqueça do quanto é especial pra mim… e que continue sendo a pessoa por quem eu sou completamente apaixonado, a pessoa que faz meus dias mais felizes, hoje, e se você quiser, por muito tempo ainda...</p>
 
-<p><b>Você aceita namorar comigo? </b></p>
+  <p><b>Você aceita namorar comigo? </b></p>
 
-<div class="buttons">
-  <button id="yesBtn">Sim, aceito! 😻</button>
-  <button id="noBtn">Não 😿</button>
-</div>
+  <div class="buttons">
+    <button id="yesBtn">Sim, aceito! 😻</button>
+    <button id="noBtn">Não 😿</button>
+  </div>
 
-<script>
-  const noBtn = document.getElementById('noBtn');
-  const yesBtn = document.getElementById('yesBtn');
-  let moving = false;
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    let moving = false;
 
-  noBtn.addEventListener('mouseenter', () => {
-    if (moving) return;
-    moving = true;
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-    noBtn.style.position = 'absolute';
-    noBtn.style.left = x + 'px';
-    noBtn.style.top = y + 'px';
-    setTimeout(() => { moving = false; }, 500);
-  });
+    function moveNoButton() {
+      if (moving) return;
+      moving = true;
 
-  yesBtn.addEventListener('click', () => {
-    document.body.innerHTML = `
-      <h1>Eu te amo 🧡</h1>
-      <p>Dizem que gatos escolhem os donos. Eu escolhi você.</p>
-      <p>Você aceitou... e eu sou o gato mais sortudo do mundo!</p>
-    `;
-    document.body.style.backgroundColor = '#fff0e6';
-    document.body.style.color = '#a64d00';
-  });
-</script>
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+      const maxX = window.innerWidth - btnWidth;
+      const maxY = window.innerHeight - btnHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+
+      setTimeout(() => {
+        moving = false;
+      }, 300);
+    }
+
+    noBtn.addEventListener('mouseenter', moveNoButton);
+    noBtn.addEventListener('touchstart', moveNoButton);
+
+    yesBtn.addEventListener('click', () => {
+      document.body.innerHTML = `
+        <h1>Eu te amo 🧡</h1>
+        <p>Dizem que gatos escolhem os donos. Eu escolhi você.</p>
+        <p>Você aceitou... e eu sou o gato mais sortudo do mundo!</p>
+      `;
+      document.body.style.backgroundColor = '#fff0e6';
+      document.body.style.color = '#a64d00';
+    });
+  </script>
 
 </body>
 </html>
