@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pedido para Rosinara</title>
+<style>
+  body {
+    background-color: #fff0f6;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    padding: 30px;
+    user-select: none;
+  }
+  h1 {
+    color: #d6336c;
+    margin-bottom: 0;
+  }
+  p {
+    font-size: 1.3em;
+    color: #444;
+    margin-top: 5px;
+  }
+  .kitty-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 25px 0;
+  }
+  .kitty-container img {
+    width: 130px;
+    height: 130px;
+    margin: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(214, 51, 108, 0.3);
+    transition: transform 0.3s ease;
+  }
+  .kitty-container img:hover {
+    transform: scale(1.1);
+  }
+  .buttons {
+    margin-top: 30px;
+  }
+  button {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px;
+    padding: 15px 40px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(214, 51, 108, 0.4);
+    transition: background-color 0.3s ease;
+  }
+  #yesBtn {
+    background-color: #d6336c;
+    color: white;
+  }
+  #yesBtn:hover {
+    background-color: #b52c5f;
+  }
+  #noBtn {
+    background-color: #f8bbd0;
+    color: #9c3852;
+    position: relative;
+  }
+</style>
+</head>
+<body>
+
+<h1>Oi, Rosinara! 😻</h1>
+<p>Tem uma coisa que está miando dentro de mim há um tempo...</p>
+<p>Então pedi ajuda de alguns gatinhos pra te mostrar o que sinto.</p>
+
+<div class="kitty-container">
+  <img src="https://placekitten.com/200/200" alt="Gatinho fofo 1" />
+  <img src="https://placekitten.com/201/200" alt="Gatinho fofo 2" />
+  <img src="https://placekitten.com/200/201" alt="Gatinho fofo 3" />
+  <img src="https://placekitten.com/202/200" alt="Gatinho fofo 4" />
+  <img src="https://placekitten.com/200/202" alt="Gatinho fofo 5" />
+</div>
+
+<p><b>Você aceita namorar comigo? 💖</b></p>
+
+<div class="buttons">
+  <button id="yesBtn">Sim, quero! 💕</button>
+  <button id="noBtn">Não 😿</button>
+</div>
+
+<script>
+  const noBtn = document.getElementById('noBtn');
+  const yesBtn = document.getElementById('yesBtn');
+  let moving = false;
+
+  noBtn.addEventListener('mouseenter', () => {
+    if (moving) return;
+    moving = true;
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+    setTimeout(() => { moving = false; }, 500);
+  });
+
+  yesBtn.addEventListener('click', () => {
+    document.body.innerHTML = `
+      <h1>Yay! 💖</h1>
+      <p>Você tornou meu mundo mais feliz, Rosinara! 😍</p>
+      <img src="https://placekitten.com/400/400" alt="Gatinho feliz" style="border-radius: 25px; margin-top: 20px; box-shadow: 0 4px 12px #d6336c;" />
+    `;
+    document.body.style.backgroundColor = '#ffe6f0';
+  });
+</script>
+
+</body>
+</html>
