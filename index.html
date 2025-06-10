@@ -12,22 +12,26 @@
       padding: 30px;
       user-select: none;
       color: #a64d00;
-      position: relative; /* para o botão "não" se mover corretamente */
-      overflow: hidden;
-      height: 100vh;
+      margin: 0;
     }
+
     h1 {
       color: #ff6600;
       margin-bottom: 0;
     }
+
     p {
       font-size: 1.3em;
       color: #7a3e00;
       margin-top: 5px;
     }
+
     .buttons {
       margin-top: 30px;
+      position: relative; /* área onde o botão 'não' pode se mover */
+      height: 200px; /* espaço fixo para a brincadeira do botão */
     }
+
     button {
       font-size: 20px;
       font-weight: bold;
@@ -41,16 +45,23 @@
       position: relative;
       z-index: 1;
     }
+
     #yesBtn {
       background-color: #ff6600;
       color: #fff8e1;
     }
+
     #yesBtn:hover {
       background-color: #cc5200;
     }
+
     #noBtn {
       background-color: #ffd6a5;
       color: #994d00;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
   </style>
 </head>
@@ -64,7 +75,7 @@
 
   <p><b>Você aceita namorar comigo? </b></p>
 
-  <div class="buttons">
+  <div class="buttons" id="btnWrapper">
     <button id="yesBtn">Sim, aceito! 😻</button>
     <button id="noBtn">Não 😿</button>
   </div>
@@ -72,6 +83,7 @@
   <script>
     const noBtn = document.getElementById('noBtn');
     const yesBtn = document.getElementById('yesBtn');
+    const wrapper = document.getElementById('btnWrapper');
     let moving = false;
 
     function moveNoButton() {
@@ -80,13 +92,14 @@
 
       const btnWidth = noBtn.offsetWidth;
       const btnHeight = noBtn.offsetHeight;
-      const maxX = window.innerWidth - btnWidth;
-      const maxY = window.innerHeight - btnHeight;
+      const wrapperRect = wrapper.getBoundingClientRect();
+
+      const maxX = wrapper.clientWidth - btnWidth;
+      const maxY = wrapper.clientHeight - btnHeight;
 
       const x = Math.random() * maxX;
       const y = Math.random() * maxY;
 
-      noBtn.style.position = 'absolute';
       noBtn.style.left = `${x}px`;
       noBtn.style.top = `${y}px`;
 
